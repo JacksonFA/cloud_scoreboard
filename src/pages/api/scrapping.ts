@@ -35,9 +35,11 @@ apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
       })
       .catch((err) => {
         console.log(err)
+        res.status(404).json({ message: 'Url not found!' })
       })
   } catch (error) {
       console.log(error)
+      res.status(500).json({ message: error.message })
   }
 })
 

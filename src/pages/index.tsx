@@ -25,13 +25,15 @@ const Home: React.FC = () => {
           Porcentagem atual - <b>{percent}</b>
         </h1>
         <h1>
-          Meta semestral - <b>65%</b>
-        </h1>
-        <h1>
           Meta mensal - <b>2,5%</b>
         </h1>
-        <Cloud />
+        <h1>
+          Meta semestral - <b>65%</b>
+        </h1>
       </main>
+      <div className="Cloud">
+        <Cloud />
+      </div>
     </div>
   )
 }
