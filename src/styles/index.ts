@@ -27,6 +27,14 @@ export const TitleText = styled.h1`
         font-size: 1.5em;
     }
 
+    @media(max-width: 700px) {
+        font-size: 1em;
+    }
+
+    @media(max-width: 460px) {
+        font-size: 0.7em;
+    }
+
     @media(max-height: 900px) {
         font-size: 2em;
     }
@@ -68,6 +76,11 @@ export const CloudSVG = styled(CloudImage)`
         height: 250pt;
     }
 
+    @media(max-width: 700px) {
+        width: 400pt;
+        height: 150pt;
+    }
+
     @media(max-height: 900px) {
         width: 750pt;
         height: 300pt;
@@ -97,6 +110,11 @@ export const CloudBackSVG = styled(CloudBackImage)`
     @media(max-width: 1000px) {
         width: 600pt;
         height: 250pt;
+    }
+
+    @media(max-width: 700px) {
+        width: 400pt;
+        height: 150pt;
     }
 
     @media(max-height: 900px) {
@@ -129,6 +147,10 @@ export const CloudPercent = styled.h1`
         font-size: 6em;
     }
 
+    @media(max-width: 700px) {
+        font-size: 4em;
+    }
+
     @media(max-height: 900px) {
         font-size: 8em;
     }
@@ -149,6 +171,7 @@ export const Information = styled.div`
     align-items: flex-end;
     width: 100%;
     padding: 2em;
+    z-index: 99999;
 `
 
 export const Icon = styled.span`
@@ -157,13 +180,13 @@ export const Icon = styled.span`
     cursor: pointer;
 
     @media(max-width: 1000px) {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
     }
 
     @media(max-height: 700px) {
-        width: 25px;
-        height: 25px;
+        width: 30px;
+        height: 30px;
     }
 `
 
@@ -190,6 +213,12 @@ export const InformationContent = styled.div`
             font-size: 0.8em;
         }
     }
+
+    @media(max-width: 700px) {
+        padding: 0.8em;
+        text {
+            font-size: 0.5em;
+        }
     
     @media(max-height: 900px) {
         padding: 1.5em;
