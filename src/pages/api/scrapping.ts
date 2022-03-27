@@ -18,7 +18,7 @@ const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const options = {
-        uri: 'http://localhost:5000/tests',
+        uri: 'https://dcloud-backend-development.herokuapp.com/tests/',
         transform: function (body) {
           return cheerio.load(body)
         }
