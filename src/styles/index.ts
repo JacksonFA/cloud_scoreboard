@@ -6,12 +6,12 @@ export const Container = styled.body`
     flex: 1;
 `
 
-export const Title = styled.div`
+export const Title = styled.div<{width: number}>`
     display: flex;
     flex-direction: column;
     position: absolute;
     align-items: center;
-    width: 100%;
+    width: ${props => props.width}px;
 `
 
 export const TitleText = styled.h1`
@@ -48,10 +48,11 @@ export const TitleText = styled.h1`
     }
 `
 
-export const Content = styled.main`
+export const Content = styled.div<{width: number}>`
     display: flex;
     flex: 1;
     justify-content: center;
+    width: ${props => props.width}px;
 `
 
 export const Cloud = styled.div`
@@ -164,14 +165,18 @@ export const CloudPercent = styled.h1`
     }
 `
 
-export const Information = styled.div`
+export const Information = styled.div<{width: number}>`
     display: flex;
     flex-direction: column;
     position: absolute;
     align-items: flex-end;
-    width: 100%;
+    width: ${props => props.width}px;
     padding: 2em;
     z-index: 99999;
+
+    @media(max-width: 750px) {
+        width: ${props => props.width + 50}px;
+    }
 `
 
 export const Icon = styled.span`
@@ -180,13 +185,8 @@ export const Icon = styled.span`
     cursor: pointer;
 
     @media(max-width: 1000px) {
-        width: 30px;
-        height: 30px;
-    }
-
-    @media(max-height: 700px) {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
     }
 `
 

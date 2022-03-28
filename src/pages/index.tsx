@@ -7,15 +7,19 @@ import Info from '../assets/info.svg'
 import * as Styles from '../styles/index'
 
 const Home: React.FC = () => {
-  const [showInfo, setShowInfo] = useState(false);
-  const [percent, setPercent] = useState('55,7%');
+  const [showInfo, setShowInfo] = useState(false)
+  const [percent, setPercent] = useState('55,7%')
+  const [width, setWidth] = useState(0)
 
-//   useEffect(() => {
-//     (async () => {
-//       const response = await axios.get('/api/scrapping')
-//       setPercent(response.data.percent);
-//     })()
-//   }, [])
+  useEffect(() => {
+    (async () => {
+    //   const response = await axios.get('/api/scrapping')
+    //   setPercent(response.data.percent)
+        // setPercent(String(sizeW));
+        const widthScreen = window.innerWidth;
+        setWidth(widthScreen)
+    })()
+  }, [])
 
   return (
     <Styles.Container>
@@ -23,12 +27,12 @@ const Home: React.FC = () => {
         <title>Cloud ScoreBoard</title>
       </Head>
 
-      <Styles.Title>
+      <Styles.Title width={width}>
         <Styles.TitleText>Cobertura de código dos testes unitários</Styles.TitleText>
         <Styles.TitleText>DGuard-Cloud</Styles.TitleText>
       </Styles.Title>
 
-      <Styles.Information>
+      <Styles.Information width={width}>
           <Styles.Icon onClick={() => setShowInfo(!showInfo) }>
             <Info />
           </Styles.Icon>
@@ -53,7 +57,7 @@ const Home: React.FC = () => {
         )}
       </Styles.Information>
 
-      <Styles.Content>
+      <Styles.Content width={width}>
         <Styles.Cloud>
             <Styles.CloudBackSVG />
         </Styles.Cloud>
