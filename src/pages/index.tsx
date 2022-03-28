@@ -13,10 +13,9 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     (async () => {
-    //   const response = await axios.get('/api/scrapping')
-    //   setPercent(response.data.percent)
-        // setPercent(String(sizeW));
-        const widthScreen = window.innerWidth;
+        const response = await axios.get('/api/scrapping')
+        setPercent(response.data.percent)
+        const widthScreen = window.innerWidth
         setWidth(widthScreen)
     })()
   }, [])

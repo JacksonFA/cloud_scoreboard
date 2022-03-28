@@ -12,6 +12,7 @@ export const Title = styled.div<{width: number}>`
     position: absolute;
     align-items: center;
     width: ${props => props.width}px;
+    min-width: 960px;
 `
 
 export const TitleText = styled.h1`
