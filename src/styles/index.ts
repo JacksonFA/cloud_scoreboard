@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import CloudImage from '../assets/cloud.svg'
 import CloudBackImage from '../assets/cloudBack.svg'
+import CloudFrontImage from '../assets/cloudFront.svg'
 
 export const Container = styled.body`
     flex: 1;
@@ -13,6 +14,7 @@ export const Title = styled.div<{width: number}>`
     align-items: center;
     width: ${props => props.width}px;
     min-width: 960px;
+    transition: all .4s;
 `
 
 export const TitleText = styled.h1`
@@ -54,6 +56,7 @@ export const Content = styled.div<{width: number}>`
     flex: 1;
     justify-content: center;
     width: ${props => props.width}px;
+    transition: all .4s;
 `
 
 export const Cloud = styled.div`
@@ -135,11 +138,51 @@ export const CloudBackSVG = styled(CloudBackImage)`
     }
 `
 
+export const CloudFrontSVG = styled(CloudFrontImage)<{percentage: string}>`
+    max-width: 1920px;
+    width: 1080pt;
+    height: 500pt;
+    fill: white;
+    clip-path: inset(0px ${props => props.percentage} 0px 0px);
+    z-index: 1;
+
+    @media(max-width: 1400px) {
+        width: 750pt;
+        height: 300pt;
+    }
+
+    @media(max-width: 1000px) {
+        width: 600pt;
+        height: 250pt;
+    }
+
+    @media(max-width: 700px) {
+        width: 400pt;
+        height: 150pt;
+    }
+
+    @media(max-height: 900px) {
+        width: 750pt;
+        height: 300pt;
+    }
+
+    @media(max-height: 720px) {
+        width: 600pt;
+        height: 250pt;
+    }
+
+    @media(max-height: 550px) {
+        width: 500pt;
+        height: 150pt;
+    }
+`
+
 export const CloudPercent = styled.h1`
     font-size: 13em;
     color: #555;
     font-family: Arial;
     margin-top: 0.7em;
+    z-index: 2;
 
     @media(max-width: 1400px) {
         font-size: 8em;

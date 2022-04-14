@@ -10,6 +10,7 @@ const Home: React.FC = () => {
   const [showInfo, setShowInfo] = useState(false)
   const [percent, setPercent] = useState('55,7%')
   const [width, setWidth] = useState(0)
+  let [percentage, setPercentage] = useState('100%');
 
   useEffect(() => {
     (async () => {
@@ -17,6 +18,9 @@ const Home: React.FC = () => {
         setPercent(response.data.percent)
         const widthScreen = window.innerWidth
         setWidth(widthScreen)
+        setPercentage(() => {
+          return percentage = (100 - parseFloat(response.data.percent.replace('%', ''))).toFixed(2) + '%'; 
+        })
     })()
   }, [])
 
@@ -58,10 +62,10 @@ const Home: React.FC = () => {
 
       <Styles.Content width={width}>
         <Styles.Cloud>
-            <Styles.CloudBackSVG />
+            <Styles.CloudFrontSVG percentage={percentage} />
         </Styles.Cloud>
         <Styles.Cloud>
-            <Styles.CloudSVG />
+            <Styles.CloudBackSVG />
         </Styles.Cloud>
         <Styles.Cloud>
             <Styles.CloudPercent>{percent}</Styles.CloudPercent>
