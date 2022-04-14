@@ -14,7 +14,7 @@ export const Title = styled.div<{width: number}>`
     align-items: center;
     width: ${props => props.width}px;
     min-width: 960px;
-    transition: all .4s;
+    transition: all 1.5s;
 `
 
 export const TitleText = styled.h1`
@@ -56,7 +56,7 @@ export const Content = styled.div<{width: number}>`
     flex: 1;
     justify-content: center;
     width: ${props => props.width}px;
-    transition: all .4s;
+    transition: all 1.5s;
 `
 
 export const Cloud = styled.div`
@@ -64,42 +64,6 @@ export const Cloud = styled.div`
     position: absolute;
     height: 100%;
     align-items: center;
-`
-
-export const CloudSVG = styled(CloudImage)`
-    max-width: 1920px;
-    width: 1080pt;
-    height: 500pt;
-
-    @media(max-width: 1400px) {
-        width: 750pt;
-        height: 300pt;
-    }
-
-    @media(max-width: 1000px) {
-        width: 600pt;
-        height: 250pt;
-    }
-
-    @media(max-width: 700px) {
-        width: 400pt;
-        height: 150pt;
-    }
-
-    @media(max-height: 900px) {
-        width: 750pt;
-        height: 300pt;
-    }
-
-    @media(max-height: 720px) {
-        width: 600pt;
-        height: 250pt;
-    }
-
-    @media(max-height: 550px) {
-        width: 500pt;
-        height: 150pt;
-    }
 `
 
 export const CloudBackSVG = styled(CloudBackImage)`

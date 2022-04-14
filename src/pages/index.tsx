@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Head from 'next/head'
 import axios from 'axios'
+import { FadeIn } from 'animate-css-styled-components'
 
 import Info from '../assets/info.svg'
 
@@ -8,19 +9,19 @@ import * as Styles from '../styles/index'
 
 const Home: React.FC = () => {
   const [showInfo, setShowInfo] = useState(false)
-  const [percent, setPercent] = useState('55,7%')
-  const [width, setWidth] = useState(0)
-  let [percentage, setPercentage] = useState('100%');
+  const [percent, setPercent] = useState('100%')
+  const [percentNumber, setPercentNumber] = useState('0%')
+  const [width, setWidth] = useState(50)
 
   useEffect(() => {
     (async () => {
         const response = await axios.get('/api/scrapping')
-        setPercent(response.data.percent)
+        const percentage = Number(parseFloat(response.data.percent.replace('%', '')).toFixed(2))
+        console.log(percentage);
+        setPercent(`${String(100 - percentage)}%`)
+        setPercentNumber(`${String(percentage)}%`)
         const widthScreen = window.innerWidth
         setWidth(widthScreen)
-        setPercentage(() => {
-          return percentage = (100 - parseFloat(response.data.percent.replace('%', ''))).toFixed(2) + '%'; 
-        })
     })()
   }, [])
 
@@ -46,7 +47,7 @@ const Home: React.FC = () => {
                 </text>
                 <br />
                 <text>
-                    Porcentagem atual: <b>{percent}</b>
+                    Porcentagem atual: <b>{percentNumber}</b>
                 </text>
                 <br />
                 <text>
@@ -60,17 +61,19 @@ const Home: React.FC = () => {
         )}
       </Styles.Information>
 
-      <Styles.Content width={width}>
-        <Styles.Cloud>
-            <Styles.CloudFrontSVG percentage={percentage} />
-        </Styles.Cloud>
-        <Styles.Cloud>
-            <Styles.CloudBackSVG />
-        </Styles.Cloud>
-        <Styles.Cloud>
-            <Styles.CloudPercent>{percent}</Styles.CloudPercent>
-        </Styles.Cloud>
-      </Styles.Content>
+      <FadeIn duration="2.0s" delay="1.0s">
+        <Styles.Content width={width}>
+            <Styles.Cloud>
+                <Styles.CloudFrontSVG percentage={percent} />
+            </Styles.Cloud>
+            <Styles.Cloud>
+                <Styles.CloudBackSVG />
+            </Styles.Cloud>
+            <Styles.Cloud>
+                <Styles.CloudPercent>{percentNumber}</Styles.CloudPercent>
+            </Styles.Cloud>
+        </Styles.Content>
+      </FadeIn>
     </Styles.Container>
   )
 }
