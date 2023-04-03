@@ -22,7 +22,7 @@
     "request": "^2.88.2",
     "request-promise": "^4.2.6",
     "sass": "^1.49.9",
-    "styled-components": "^5.3.5"
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@babel/core": "^7.17.8",

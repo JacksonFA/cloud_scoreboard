@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import nextConnect from 'next-connect'
+import axios from 'axios'
 
 const rp = require('request-promise')
 const cheerio = require('cheerio')
@@ -17,26 +18,25 @@ const apiRoute = nextConnect<NextApiRequest, NextApiResponse>({
 
 apiRoute.get(async (req: NextApiRequest, res: NextApiResponse) => {
   try {
-    const options = {
-        uri: 'https://dcloud-backend-development.herokuapp.com/tests/',
-        transform: function (body) {
+    const percents = []
+    const servicesTestsUri = ['https://dcloud-notifications-dev.herokuapp.com/tests/', 'https://dcloud-backend-development.herokuapp.com/tests/']
+    for await (const serviceTestsUri of servicesTestsUri) { 
+      const options = {
+        url: serviceTestsUri,
+        transformResponse: function (body) {
           return cheerio.load(body)
         }
+      }
+      const response = await axios.request(options)
+      const html = response.data
+      html('.strong').each((i, item) => {
+        if (i === 0) {
+          const percent = item.children[0].data
+          percents.push(percent)
+        }
+      })
     }
-
-    rp(options)
-      .then(($) => {
-          $('.strong').each((i, item) => {
-              if (i === 0) {
-                const percent = item.children[0].data
-                res.json({ percent })
-              }
-          })
-      })
-      .catch((err) => {
-        console.log(err)
-        res.status(404).json({ message: 'Url not found!' })
-      })
+    res.json({ percents })
   } catch (error) {
       console.log(error)
       res.status(500).json({ message: error.message })
